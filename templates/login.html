@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h2>Login</h2>
+
+
+{% if not request.user.is_authenticated %}
+  
+
+  
+<form action="" method='POST'>
+{% csrf_token %}
+
+{% if error %}
+  <p>{{error}}</p>
+{% endif %}
+  
+<div>
+  <label for="username">Username</label>
+  <input type="text" id="username" name='username' placeholder='username'>
+</div>
+<div>
+  <label for="password">Password</label>
+  <input type="password" id="password" name='password' placeholder='password'>
+</div>
+<input type="submit" value='Login'>
+</form>
+{% else %}
+<p>You are logged in already as {{user.username}} <a href="{% url 'logout' %}">Logout</a></p>
+{% endif %}
+{% endblock content %}
+
+

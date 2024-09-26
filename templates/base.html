@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Home</h1>
+<ul>
+  <li><a href="{% url 'article' %}">All articles</a></li>
+  <li><a href="{% url 'article-create' %}">Create article</a></li>
+  <li><a href="{% url 'login' %}">Login</a></li>
+</ul>
+ 
+  <form action="{% url 'article-search' %}">
+    <input type="text" name="query" id="">
+    <input type="submit" value="Search">
+    
+      </form>
+ 
+ {% block content %}
+ 
+ {% endblock content %}
+
+
+</body>
+</html>
