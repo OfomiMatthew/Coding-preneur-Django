@@ -5,20 +5,13 @@
 <br>
 
 {% if not created %}
-  {{form.as_p}}
+ 
 
   
 <form action="" method='POST'>
   {% csrf_token %}
-  <div>
-<input type="text" name='title' placeholder='title'>
-</div>
-<div>
-<textarea name="content" id="" placeholder='content'></textarea>
-</div>
-<div>
-<input type="submit" value="Create article">
-</div>
+  {{form.as_p}}
+  <button type="submit">Creat Article</button>
 </form>
 {% else %}
 

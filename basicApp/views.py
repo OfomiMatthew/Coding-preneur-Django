@@ -4,11 +4,12 @@ from django.contrib.auth import authenticate,login,logout
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 def get_article(request):
   obj = Article.objects.get(id=1)
-  articles = Article.objects.all()
+  articles = Article.objects.all().order_by('-id')
   my_list = [1,2,4]
   return render(request,'home.html',{'articles':articles})
 
@@ -37,17 +38,18 @@ def article_search(request):
 
 @login_required
 def article_create(request):
-  context ={"form":ArticleForm()}
-  if request.method == 'POST':
-    
-    title = request.POST.get('title')
-    content = request.POST.get('content')
-    print("title:",title)
-    print("content:",content)
-    article_object = Article.objects.create(title=title,content=content)
-    context['object'] = article_object
-    context['created'] = True
-    # context['content'] = content
+  form = ArticleForm(request.POST or None)
+  context ={
+   'form':form
+ }
+
+  if form.is_valid():
+      article_object = form.save()
+      context['form'] = ArticleForm()
+      context['article_object'] = article_object
+      return redirect('article')
+     
+   
   
   
   return render(request,'create.html',context=context)
@@ -70,5 +72,14 @@ def logout_view(request):
     logout(request)
     return redirect('login')
   return render(request,'logout.html')
+
+def register_view(request):
+  form = UserCreationForm(request.POST or None)
+  context = {'form':form}
+  if form.is_valid():
+    user_obj = form.save()
+    context['user_obj'] = user_obj
+    return redirect('login')
+  return render(request,'register.html',context)
   
   

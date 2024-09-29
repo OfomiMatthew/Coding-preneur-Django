@@ -12,7 +12,7 @@
 {% for art in articles  %}
 <li>
 
-<a href="{% url 'an-article' art.id %}">  {{art}} - {{art.content}}</li></a>
+<a href="{% url 'an-article' art.id %}">  {{art}} - {{art.content}} - {{art.id}}</li></a>
 
 {% endfor %}
 </div>

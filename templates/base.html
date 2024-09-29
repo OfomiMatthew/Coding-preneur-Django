@@ -7,10 +7,24 @@
 </head>
 <body>
   <h1>Home</h1>
+
+{% if request.user.is_authenticated %}
+  <h3>Welcome {{request.user.username}}</h3>
+  {% else %}
+  
+{% endif %}
+  
 <ul>
   <li><a href="{% url 'article' %}">All articles</a></li>
   <li><a href="{% url 'article-create' %}">Create article</a></li>
+  
+  {% if user.is_authenticated %}
+  <li><a href="{% url 'logout' %}">Logout</a></li>
+ 
+    {% else %}
   <li><a href="{% url 'login' %}">Login</a></li>
+  <li><a href="{% url 'register' %}">Register</a></li>
+  {% endif %}
 </ul>
  
   <form action="{% url 'article-search' %}">

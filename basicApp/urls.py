@@ -7,5 +7,6 @@ urlpatterns = [
     path('search',views.article_search,name='article-search'),
     path('create',views.article_create,name='article-create'),
     path('login',views.login_view,name='login'),
-    path('logout',views.logout_view,name='logout')
+    path('logout',views.logout_view,name='logout'),
+    path('register',views.register_view,name='register')
 ]
