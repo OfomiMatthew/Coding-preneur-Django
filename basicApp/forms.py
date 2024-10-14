@@ -1,5 +1,5 @@
 from django import forms 
-from .models import *
+from .models import Article
 
 class ArticleFormOld(forms.Form):
   title = forms.CharField()

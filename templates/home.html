@@ -4,16 +4,17 @@
 {% block content %}
 
 <div>
-{% for number in my_list  %}
-<li>{{number}}</li>
-{% endfor %}
+
 
 <h2>Articles</h2>
 {% for art in articles  %}
+
+<ul>
 <li>
 
-<a href="{% url 'an-article' art.id %}">  {{art}} - {{art.content}} - {{art.id}}</li></a>
-
+<a href="{% url 'an-article' art.id %}">  {{art}} - {{art.content}} </li> </a>
+created at {{art.time_created|date:"Y-m-d"}}
+</ul>
 {% endfor %}
 </div>
 {% endblock content %}
